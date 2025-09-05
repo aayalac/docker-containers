@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  apache:
+    build: ./apache
+    container_name: apache-server
+    ports:
+      - "8081:80"
+    volumes:
+      - ./apache/html:/usr/local/apache2/htdocs
+      - ./apache/conf/000-default.conf:/usr/local/apache2/conf/conf.d/000-default.conf
+      - ./apache/logs:/usr/local/apache2/logs
+    restart: always
+
