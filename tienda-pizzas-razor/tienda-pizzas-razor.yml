@@ -1,0 +1,22 @@
+# Fase de compilación
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+
+# Copiar el archivo de proyecto y restaurar dependencias
+COPY ["*.csproj", "."]
+RUN dotnet restore
+
+# Copiar el resto del código y compilar
+COPY . .
+RUN dotnet publish -c Release -o /app/publish
+
+# Fase final - Usa una imagen con runtime de ASP.NET Core
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Exponer el puerto que usa la aplicación (normalmente 80 o 5000)
+EXPOSE 80
+
+# Entry point para ejecutar la aplicación
+ENTRYPOINT ["dotnet", "tu-nombre-de-assembly.dll"]
