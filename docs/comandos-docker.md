@@ -40,3 +40,7 @@ Uso: **[docker][container][comando]**
      ```bash
     docker container top
     ```
+- Ingresar al bash de un container.
+     ```bash
+    docker container exec -it [ID_CONTAINER] bash
+    ```
