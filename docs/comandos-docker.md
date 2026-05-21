@@ -44,3 +44,7 @@ Uso: **[docker][container][comando]**
      ```bash
     docker container exec -it [ID_CONTAINER] bash
     ```
+- Aplicar politica de reinicio automatico para contenedor
+     ```bash
+    docker update --restart unless-stopped [ID_CONTAINER]
+     ```
