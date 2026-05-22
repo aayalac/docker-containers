@@ -12,5 +12,5 @@ docker container run -d --name [nombre] -p [Puerto_personalizado]:8080 --name [n
 ```
 - Genera el contenedor a partir del ID de la imagen generada con variable de entorno.
 ```bash
-docker container run -d --name [nombre] -p [Puerto_personalizado]:8080 --name -e [variable-de-entorno] [nombre-contenedor] [ID_IMAGEN]
+docker container run -d --name [nombre] -p [Puerto_personalizado]:8080 --name -e [variable-de-entorno] [ID_IMAGEN]
 ```
