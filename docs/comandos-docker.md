@@ -32,6 +32,10 @@ Uso: **[docker][container][comando]**
      ```bash
     docker container stats
     ```
+- Muestra Informacion y propiedades de un contenedor
+     ```bash
+    docker container inspect
+    ```
 - Detener un contenedor.
      ```bash
     docker container stop
