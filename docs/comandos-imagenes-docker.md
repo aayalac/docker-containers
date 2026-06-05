@@ -1,42 +1,90 @@
-# Comandos para administrar imagenes de Docker
+# Comandos de imágenes Docker
 
-Se pueden ejecutar desde el CLI:
+Referencia de comandos para administrar imágenes Docker.
 
-Uso: **[docker][image][comando]**
+**Sintaxis:** `docker image [comando]`
 
-- Construye una imagen desde un Dockerfile.
-     ```bash
-    docker image Build
-    ```
-- Mostrar el historial de una imagen.
-     ```bash
-    docker image history
-    ```
-- Mostrar informacion detallada de una imagen.
-     ```bash
-    docker image inspect
-    ```
-- Listar imágenes.
-     ```bash
-    docker image ls
-    ```
-- Elimina imágenes no utilizadas.
-     ```bash
-    docker image prune
-    ```
-- Obtener uan imagen desde un repositorio.
-     ```bash
-    docker image pull
-    ```
-- Enviar una imagen a un repositorio.
-     ```bash
-    docker image push
-    ```
-- Eliminar imágenes.
-     ```bash
-    docker image rm
-    ```
-- Crear una etiqueta en la imagen.
-     ```bash
-    docker image tag
-    ```
+## Comandos básicos
+
+| Comando | Descripción |
+|---------|-------------|
+| `docker image build` | Construir una imagen desde un Dockerfile |
+| `docker image pull` | Obtener una imagen desde un repositorio |
+| `docker image push` | Enviar una imagen a un repositorio |
+| `docker image rm` | Eliminar una imagen |
+| `docker image tag` | Crear una etiqueta en la imagen |
+
+## Comandos de información
+
+| Comando | Descripción |
+|---------|-------------|
+| `docker image ls` | Listar imágenes locales |
+| `docker image inspect` | Mostrar información detallada de una imagen |
+| `docker image history` | Mostrar el historial de capas de una imagen |
+
+## Comandos de mantenimiento
+
+| Comando | Descripción |
+|---------|-------------|
+| `docker image prune` | Eliminar imágenes no utilizadas |
+| `docker image prune -a` | Eliminar todas las imágenes no utilizadas |
+
+## Ejemplos
+
+### Construir una imagen
+
+```bash
+# Construir con nombre y versión
+docker image build -t mi-app:1.0 -f Dockerfile .
+
+# Construir desde un directorio específico
+docker image build -t mi-app:1.0 -f ./docker/Dockerfile ./src
+```
+
+### Gestionar imágenes
+
+```bash
+# Listar todas las imágenes
+docker image ls
+
+# Listar imágenes con más detalle
+docker image ls --format "table {{.Repository}}\t{{.Tag}}\t{{.Size}}"
+
+# Ver el historial de capas
+docker image history mi-app:1.0
+
+# Inspeccionar una imagen
+docker image inspect mi-app:1.0
+```
+
+### Publicar imágenes
+
+```bash
+# Etiquetar para un registro
+docker image tag mi-app:1.0 usuario/mi-app:1.0
+
+# Iniciar sesión en Docker Hub
+docker login
+
+# Subir al registro
+docker image push usuario/mi-app:1.0
+```
+
+### Limpieza
+
+```bash
+# Eliminar imágenes sin uso
+docker image prune
+
+# Eliminar todas las imágenes (cuidado)
+docker image prune -a
+
+# Eliminar imagen específica
+docker image rm mi-app:1.0
+```
+
+## Ver también
+
+- [Comandos de contenedores](comandos-docker.md)
+- [Despliegue de imágenes .NET](desplegar-imagenes-docker.md)
+- [Comandos de registros](comandos-registros-docker.md)
